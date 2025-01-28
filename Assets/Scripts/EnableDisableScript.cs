@@ -8,6 +8,9 @@ public class EnableDisableScript : MonoBehaviour
     public SpriteRenderer circleSprite;
     public EnableDisableScript script;
     public GameObject badUI;
+    public AudioSource soundEmitter;
+
+    public AudioClip soundByte;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,22 @@ public class EnableDisableScript : MonoBehaviour
 
             circleSprite.enabled = true;
             badUI.SetActive(true);
+
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+
+            //soundEmitter.Play();
+
+            if (!soundEmitter.isPlaying)
+            {
+
+                soundEmitter.PlayOneShot(soundByte);
+
+            }
+
+            Debug.Log(soundEmitter.clip.length);
 
         }
 
