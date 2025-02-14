@@ -16,7 +16,7 @@ public class MagReleaseScript : MonoBehaviour
 
     bool releaseKickoff = false;
 
-    float resetTimer = 3.0f;
+    float resetTimer = 1.1f;
 
     [SerializeField] MagazineScript magScript;
 
@@ -53,7 +53,7 @@ public class MagReleaseScript : MonoBehaviour
                     releaseInUse = true;
 
                     Debug.Log("Slide!");
-                    magScript.SwapMagazine();
+                    magScript.StartMagSwap();
 
                 }           
 
@@ -133,7 +133,7 @@ public class MagReleaseScript : MonoBehaviour
             releaseInUse = false;
             releaseKickoff = false;
 
-            resetTimer = 3.0f;
+            resetTimer = 1.1f;
 
             Debug.Log("Mag release is ready.");
 

@@ -559,6 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701240151}
+  - component: {fileID: 701240152}
   m_Layer: 0
   m_Name: Charging Handle
   m_TagString: Untagged
@@ -582,6 +583,43 @@ Transform:
   - {fileID: 149588598}
   m_Father: {fileID: 1232640063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &701240152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701240150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3344d55dcd2104b8aa5731738a9bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargingHandleSprite: {fileID: 149588599}
+  handleResetSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.3514099
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &887488105
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 887488106}
+  - component: {fileID: 887488107}
   m_Layer: 0
   m_Name: Magazines
   m_TagString: Untagged
@@ -616,6 +655,22 @@ Transform:
   - {fileID: 104750249}
   m_Father: {fileID: 1232640063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887488107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887488105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f59eb6a6cce5d04eb21347100974caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stalkerMag: {fileID: 39619984}
+  autoMag: {fileID: 1989306351}
+  rifleMag: {fileID: 104750248}
+  newMag: 1
 --- !u!1 &967387170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,7 +1121,7 @@ Transform:
   m_GameObject: {fileID: 1259481016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1116,6 +1171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1675425609}
+  - component: {fileID: 1675425610}
   m_Layer: 0
   m_Name: Mag Release
   m_TagString: Untagged
@@ -1139,6 +1195,20 @@ Transform:
   - {fileID: 967387171}
   m_Father: {fileID: 1232640063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1675425610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675425608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e1de43bcd97dc4193df64ceac8f196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magScript: {fileID: 887488107}
+  magReleaseSprite: {fileID: 967387172}
 --- !u!1 &1982239350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1982239351}
+  - component: {fileID: 1982239352}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -1171,6 +1242,19 @@ Transform:
   - {fileID: 1060728933}
   m_Father: {fileID: 1232640063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1982239352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982239350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b97599639ed7104c940d4121103b59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerSprite: {fileID: 1060728934}
 --- !u!1 &1989306351
 GameObject:
   m_ObjectHideFlags: 0
