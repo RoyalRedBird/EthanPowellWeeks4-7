@@ -123,7 +123,7 @@ public class MagazineScript : MonoBehaviour
     void SwitchMagType()
     {
 
-        if(newMag == 1)
+        if(newMag == 0)
         {
 
             stalkerMag.SetActive(false);
@@ -134,7 +134,7 @@ public class MagazineScript : MonoBehaviour
 
         }
 
-        if (newMag == 2)
+        if (newMag == 1)
         {
 
             stalkerMag.SetActive(true);
@@ -145,7 +145,7 @@ public class MagazineScript : MonoBehaviour
 
         }
 
-        if (newMag == 3)
+        if (newMag == 2)
         {
 
             stalkerMag.SetActive(false);
