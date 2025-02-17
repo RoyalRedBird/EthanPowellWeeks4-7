@@ -19,8 +19,8 @@ public class MagazineScript : MonoBehaviour
 
     float waitTimer = 1.0f;
 
-    int activeMag = 1;
-    [SerializeField] [Range(1,3)] int newMag = 1;
+    int activeMag = 0;
+    [SerializeField] [Range(0,2)] int newMag = 0;
 
     int ammoMax = 24;
     int currentAmmo = 24;

@@ -9,6 +9,10 @@ public class LoreBoxScript : MonoBehaviour
     [SerializeField] RectTransform ExpandButton;
     [SerializeField] RectTransform CollapseButton;
 
+    bool windowCollapsed = true;
+    bool windowExpanded = false;
+    bool windowHidden = false;
+
     Vector3 expandedSize = new Vector3(4.5f, 1f, 1f);
     int buttonPartialPosX = 300;
     int buttonFullPosX = 1225;
@@ -27,7 +31,7 @@ public class LoreBoxScript : MonoBehaviour
     Vector2 collapsebuttonHiddenPos;
 
     [SerializeField] AnimationCurve SmoothInCurve;
-    float SmoothInTime;
+    float SmoothInTime = 0f;
 
 
     // Start is called before the first frame update
@@ -83,25 +87,56 @@ public class LoreBoxScript : MonoBehaviour
                
     }
 
+    public void ExpandButtonHandler()
+    {
+
+        if (windowCollapsed)
+        {
+
+            ExpandLoreWindow();
+            windowExpanded = true;
+            windowCollapsed = false;
+
+        }else if(windowHidden)
+        {
+
+            CollapseLoreWindow();
+            windowCollapsed = true;
+            windowHidden = false;
+
+        }
+
+    }
+
+    public void CollapseButtonHandler()
+    {
+
+        if (windowExpanded)
+        {
+
+            CollapseLoreWindow();
+            windowExpanded = false;
+            windowCollapsed = true;
+
+        }else if (windowCollapsed)
+        {
+
+            HideLoreWindow();
+            windowCollapsed = false;
+            windowHidden = true;
+
+        }
+
+    }
+
     public void ExpandLoreWindow()
     {
 
         LoreBoxSize.localScale = expandedSize;
 
-        Vector2 boxPos = LoreBoxSize.position;
-        Vector2 expPos = ExpandButton.position;
-        Vector2 colPos = CollapseButton.position;
-
-        boxPos.x = Screen.width / 2;
-        boxPos.y = 0;
-
-        LoreBoxSize.anchoredPosition = boxPos;
-
-        expPos.x = buttonFullPosX;
-        colPos.x = buttonFullPosX;
-
-        ExpandButton.position = expPos;
-        CollapseButton.position = colPos;
+        LoreBoxSize.position = windowExpandedPos;
+        ExpandButton.position = expandButtonExpandedPos;
+        CollapseButton.position = collapseButtonExpandedPos;
 
     }
 
@@ -110,21 +145,22 @@ public class LoreBoxScript : MonoBehaviour
 
         LoreBoxSize.localScale = Vector3.one;
 
-        Vector2 boxPos = LoreBoxSize.position;
-        Vector2 expPos = ExpandButton.position;
-        Vector2 colPos = CollapseButton.position;
-
-        boxPos.x = 150;
-        boxPos.y = 0;
-
-        LoreBoxSize.anchoredPosition = boxPos;
-
-        expPos.x = buttonPartialPosX;
-        colPos.x = buttonPartialPosX;
-
-        ExpandButton.position = expPos;
-        CollapseButton.position = colPos;
+        LoreBoxSize.position = windowCollapsedPos;
+        ExpandButton.position = expandbuttonCollapsedPos;
+        CollapseButton.position = collapsebuttonCollapsedPos;
 
     }
+
+    public void HideLoreWindow()
+    {
+
+        LoreBoxSize.localScale = Vector3.one;
+
+        LoreBoxSize.position = windowHiddenPos;
+        ExpandButton.position = expandbuttonHiddenPos;
+        CollapseButton.position = collapsebuttonHiddenPos;
+
+    }
+
 
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class ReceiverScript : MonoBehaviour
 {
 
+    //GOD I FUCKING LOVE THE MILITARY INDUSTRIAL COMPLEX.
+
     [SerializeField] GameObject stalkerReceiver;
     [SerializeField] GameObject autoReceiver;
     [SerializeField] GameObject rifleReceiver;

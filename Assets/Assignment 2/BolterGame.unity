@@ -1633,7 +1633,7 @@ MonoBehaviour:
   stalkerMag: {fileID: 39619984}
   autoMag: {fileID: 1989306351}
   rifleMag: {fileID: 104750248}
-  newMag: 1
+  newMag: 0
 --- !u!1 &904572229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3154,7 +3154,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 960169619}
         m_TargetAssemblyTypeName: LoreBoxScript, Assembly-CSharp
-        m_MethodName: ExpandLoreWindow
+        m_MethodName: ExpandButtonHandler
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4617,7 +4617,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 960169619}
         m_TargetAssemblyTypeName: LoreBoxScript, Assembly-CSharp
-        m_MethodName: CollapseLoreWindow
+        m_MethodName: CollapseButtonHandler
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
