@@ -129,8 +129,8 @@ public class LoreBoxScript : MonoBehaviour
             windowExpanded = true;
             windowCollapsed = false;
 
-            revealingWindow = true;
-            collapsingWindow = false;
+            revealingWindow = false;
+            collapsingWindow = true;
 
         }else if(windowHidden)
         {
@@ -138,8 +138,8 @@ public class LoreBoxScript : MonoBehaviour
             windowCollapsed = true;
             windowHidden = false;
 
-            revealingWindow = false;
-            collapsingWindow = true;
+            revealingWindow = true;
+            collapsingWindow = false;
 
         }
 
@@ -165,7 +165,7 @@ public class LoreBoxScript : MonoBehaviour
             windowCollapsed = false;
             windowHidden = true;
 
-            collapsingWindow = false;
+            collapsingWindow = true;
             revealingWindow = false;
 
         }
