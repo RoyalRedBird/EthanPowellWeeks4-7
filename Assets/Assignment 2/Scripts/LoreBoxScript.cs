@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LoreBoxScript : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class LoreBoxScript : MonoBehaviour
     [SerializeField] RectTransform LoreBoxSize;
     [SerializeField] RectTransform ExpandButton;
     [SerializeField] RectTransform CollapseButton;
+
+    [SerializeField] GameObject CollapsedText;
+    [SerializeField] GameObject FullText;
+
+    bool hidingCollapsedText = false;
+    bool showingCollapsedText = true;
+
+    bool hidingFullText = true;
+    bool showingFullText = false;
 
     bool windowCollapsed = true;
     bool windowExpanded = false;
@@ -36,6 +46,7 @@ public class LoreBoxScript : MonoBehaviour
     [SerializeField] AnimationCurve SmoothInCurve;
     float SmoothInTime = 0f;
 
+    float revealDelayTime = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +103,8 @@ public class LoreBoxScript : MonoBehaviour
 
             ExpandLoreWindow();
 
+            RevealFullText();
+
         }
         else if (windowCollapsed)
         {
@@ -108,20 +121,64 @@ public class LoreBoxScript : MonoBehaviour
 
             }
 
+            RevealCollapsedText();
+
         }
         else if (windowHidden)
         {
 
+            HideText();
             HideLoreWindow();
 
         }
                
     }
 
+    void RevealFullText()
+    {
+
+        CollapsedText.SetActive(false);
+
+        revealDelayTime -= Time.deltaTime;
+
+        if(revealDelayTime <= 0)
+        {
+
+            FullText.SetActive(true);
+
+        }
+
+    }
+
+    void RevealCollapsedText()
+    {
+
+        FullText.SetActive(false);
+
+        revealDelayTime -= Time.deltaTime;
+
+        if (revealDelayTime <= 0)
+        {
+
+            CollapsedText.SetActive(true);
+
+        }
+
+    }
+
+    void HideText()
+    {
+
+        FullText.SetActive(false);
+        CollapsedText.SetActive(false);
+
+    }
+
     public void ExpandButtonHandler()
     {
 
         SmoothInTime = 0;
+        revealDelayTime = 1.5f;
 
         if (windowCollapsed)
         {
@@ -132,6 +189,12 @@ public class LoreBoxScript : MonoBehaviour
             revealingWindow = false;
             collapsingWindow = true;
 
+            showingFullText = true;
+            hidingFullText = false;
+
+            showingCollapsedText = false;
+            hidingCollapsedText = true;
+
         }else if(windowHidden)
         {
             
@@ -141,6 +204,12 @@ public class LoreBoxScript : MonoBehaviour
             revealingWindow = true;
             collapsingWindow = false;
 
+            showingFullText = false;
+            hidingFullText = true;
+
+            showingCollapsedText = true;
+            hidingCollapsedText = false;
+
         }
 
     }
@@ -149,6 +218,7 @@ public class LoreBoxScript : MonoBehaviour
     {
 
         SmoothInTime = 0;
+        revealDelayTime = 1.5f;
 
         if (windowExpanded)
         {
@@ -159,7 +229,14 @@ public class LoreBoxScript : MonoBehaviour
             collapsingWindow = true;
             revealingWindow = false;
 
-        }else if (windowCollapsed)
+            showingFullText = false;
+            hidingFullText = true;
+
+            showingCollapsedText = false;
+            hidingCollapsedText = true;
+
+        }
+        else if (windowCollapsed)
         {
           
             windowCollapsed = false;
@@ -167,6 +244,12 @@ public class LoreBoxScript : MonoBehaviour
 
             collapsingWindow = true;
             revealingWindow = false;
+
+            showingFullText = false;
+            hidingFullText = true;
+
+            showingCollapsedText = false;
+            hidingCollapsedText = true;
 
         }
 
@@ -221,7 +304,6 @@ public class LoreBoxScript : MonoBehaviour
 
         LoreBoxSize.position = Vector2.Lerp(windowCollapsedPos, windowHiddenPos, SmoothInCurve.Evaluate(SmoothInTime));
 
-        //LoreBoxSize.position = windowHiddenPos;
         ExpandButton.position = expandbuttonHiddenPos;
         CollapseButton.position = collapsebuttonHiddenPos;
 
