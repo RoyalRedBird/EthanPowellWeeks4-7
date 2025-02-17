@@ -7,7 +7,7 @@ public class BoltScript : MonoBehaviour
 
     Vector2 boltDirection;
 
-    float gravity = 0.1f;
+    float gravity = 0.001f;
 
     float xVelocity;
     float yVelocity;
@@ -41,10 +41,10 @@ public class BoltScript : MonoBehaviour
     public void BoltPhysSetup()
     {
 
-        xVelocity = Random.Range(0.1f, 0.9f);
-        yVelocity = Random.Range(1f, 2f);
+        xVelocity = Random.Range(0.01f, 0.04f);
+        yVelocity = Random.Range(0.05f, 0.015f);
 
-        rotationSpeed = Random.Range(20f, 30f);
+        rotationSpeed = Random.Range(3f, 8f);
 
     }
 
