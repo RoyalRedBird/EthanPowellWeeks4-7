@@ -13,6 +13,8 @@ public class BoltScript : MonoBehaviour
     float yVelocity;
     float rotationSpeed;
 
+    float killTimer = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,15 @@ public class BoltScript : MonoBehaviour
 
         transform.position = boltPos;
         transform.eulerAngles = boltSpin;
+
+        killTimer -= Time.deltaTime;
+
+        if(killTimer <= 0)
+        {
+
+            GameObject.Destroy(gameObject);
+
+        }
         
     }
 
