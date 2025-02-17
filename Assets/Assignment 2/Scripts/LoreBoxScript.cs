@@ -13,6 +13,9 @@ public class LoreBoxScript : MonoBehaviour
     bool windowExpanded = false;
     bool windowHidden = false;
 
+    bool revealingWindow = false;
+    bool collapsingWindow = false;
+
     Vector3 expandedSize = new Vector3(4.5f, 1f, 1f);
     int buttonPartialPosX = 300;
     int buttonFullPosX = 1225;
@@ -84,25 +87,59 @@ public class LoreBoxScript : MonoBehaviour
     void Update()
     {
 
+        if (windowExpanded)
+        {
+
+            ExpandLoreWindow();
+
+        }
+        else if (windowCollapsed)
+        {
+
+            if (collapsingWindow)
+            {
+
+                ExpandedToCollapseLoreWindow();
+
+            }else if (revealingWindow)
+            {
+
+                HiddenToCollapseLoreWindow();
+
+            }
+
+        }
+        else if (windowHidden)
+        {
+
+            HideLoreWindow();
+
+        }
                
     }
 
     public void ExpandButtonHandler()
     {
 
+        SmoothInTime = 0;
+
         if (windowCollapsed)
         {
-
-            ExpandLoreWindow();
+           
             windowExpanded = true;
             windowCollapsed = false;
 
+            revealingWindow = true;
+            collapsingWindow = false;
+
         }else if(windowHidden)
         {
-
-            CollapseLoreWindow();
+            
             windowCollapsed = true;
             windowHidden = false;
+
+            revealingWindow = false;
+            collapsingWindow = true;
 
         }
 
@@ -111,19 +148,25 @@ public class LoreBoxScript : MonoBehaviour
     public void CollapseButtonHandler()
     {
 
+        SmoothInTime = 0;
+
         if (windowExpanded)
         {
 
-            CollapseLoreWindow();
             windowExpanded = false;
             windowCollapsed = true;
 
+            collapsingWindow = true;
+            revealingWindow = false;
+
         }else if (windowCollapsed)
         {
-
-            HideLoreWindow();
+          
             windowCollapsed = false;
             windowHidden = true;
+
+            collapsingWindow = false;
+            revealingWindow = false;
 
         }
 
@@ -132,20 +175,38 @@ public class LoreBoxScript : MonoBehaviour
     public void ExpandLoreWindow()
     {
 
-        LoreBoxSize.localScale = expandedSize;
+        SmoothInTime += Time.deltaTime;
 
-        LoreBoxSize.position = windowExpandedPos;
+        LoreBoxSize.localScale = Vector3.Lerp(Vector3.one, expandedSize, SmoothInCurve.Evaluate(SmoothInTime));
+        LoreBoxSize.position = Vector2.Lerp(windowCollapsedPos, windowExpandedPos, SmoothInCurve.Evaluate(SmoothInTime));
+
         ExpandButton.position = expandButtonExpandedPos;
         CollapseButton.position = collapseButtonExpandedPos;
 
     }
 
-    public void CollapseLoreWindow()
+    public void ExpandedToCollapseLoreWindow()
     {
+
+        SmoothInTime += Time.deltaTime;
+
+        LoreBoxSize.localScale = Vector3.Lerp(expandedSize, Vector3.one, SmoothInCurve.Evaluate(SmoothInTime));
+        LoreBoxSize.position = Vector2.Lerp(windowExpandedPos, windowCollapsedPos, SmoothInCurve.Evaluate(SmoothInTime));
+
+        ExpandButton.position = expandbuttonCollapsedPos;
+        CollapseButton.position = collapsebuttonCollapsedPos;
+
+    }
+
+    public void HiddenToCollapseLoreWindow()
+    {
+
+        SmoothInTime += Time.deltaTime;
+
+        LoreBoxSize.position = Vector2.Lerp(windowHiddenPos, windowCollapsedPos, SmoothInCurve.Evaluate(SmoothInTime));
 
         LoreBoxSize.localScale = Vector3.one;
 
-        LoreBoxSize.position = windowCollapsedPos;
         ExpandButton.position = expandbuttonCollapsedPos;
         CollapseButton.position = collapsebuttonCollapsedPos;
 
@@ -154,9 +215,13 @@ public class LoreBoxScript : MonoBehaviour
     public void HideLoreWindow()
     {
 
+        SmoothInTime += Time.deltaTime;
+
         LoreBoxSize.localScale = Vector3.one;
 
-        LoreBoxSize.position = windowHiddenPos;
+        LoreBoxSize.position = Vector2.Lerp(windowCollapsedPos, windowHiddenPos, SmoothInCurve.Evaluate(SmoothInTime));
+
+        //LoreBoxSize.position = windowHiddenPos;
         ExpandButton.position = expandbuttonHiddenPos;
         CollapseButton.position = collapsebuttonHiddenPos;
 
