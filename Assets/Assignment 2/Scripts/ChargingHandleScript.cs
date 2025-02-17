@@ -6,12 +6,16 @@ public class ChargingHandleScript : MonoBehaviour
 {
 
     [SerializeField] SpriteRenderer chargingHandleSprite;
+    [SerializeField] Transform EjectPoint;
+    [SerializeField] GameObject BoltRound;
 
     Vector2 chargingHandleStartPos;
     Vector2 chargingHandleEndPos;
 
     bool SlideFullBack;
     bool SlideIdle;
+
+    bool ShellEjected = false;
 
     bool handleHeld;
 
@@ -75,6 +79,8 @@ public class ChargingHandleScript : MonoBehaviour
             currentHandlePos.x = chargingHandleStartPos.x;
             SlideIdle = true;
             SlideFullBack = false;
+            ShellEjected = false;
+            
 
 
         }else if(currentHandlePos.x < chargingHandleEndPos.x) {
@@ -83,9 +89,28 @@ public class ChargingHandleScript : MonoBehaviour
             SlideIdle = false;
             SlideFullBack = true;
 
+            EjectShell();
+
         }
 
         transform.position = currentHandlePos;
 
     }
+
+    void EjectShell()
+    {
+
+        if (!ShellEjected)
+        {
+
+            GameObject newBolt = GameObject.Instantiate(BoltRound, EjectPoint);
+
+            newBolt.GetComponent<BoltScript>().BoltPhysSetup();
+
+            ShellEjected = true;
+
+        }
+
+    }
+
 }
