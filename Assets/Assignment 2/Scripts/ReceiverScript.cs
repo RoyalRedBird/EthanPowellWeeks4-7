@@ -5,8 +5,7 @@ using UnityEngine;
 public class ReceiverScript : MonoBehaviour
 {
 
-    //GOD I FUCKING LOVE THE MILITARY INDUSTRIAL COMPLEX.
-
+    //The GameObjects for each of the receiver types.
     [SerializeField] GameObject stalkerReceiver;
     [SerializeField] GameObject autoReceiver;
     [SerializeField] GameObject rifleReceiver;
@@ -23,10 +22,11 @@ public class ReceiverScript : MonoBehaviour
         
     }
 
-    public void SwapReceiver(int select)
+    //Takes the input from the Receiver drop down and changes which receiver/optic is being displayed to the user.
+    public void SwapReceiver(int select) 
     {
 
-        if (select == 0)
+        if (select == 0) //Displays the standard Rifle receiver and scope.
         {
 
             stalkerReceiver.SetActive(false);
@@ -35,7 +35,7 @@ public class ReceiverScript : MonoBehaviour
 
         }
 
-        if (select == 1)
+        if (select == 1) //Displays the Stalker receiver and sniper scope.
         {
 
             stalkerReceiver.SetActive(true);
@@ -44,7 +44,7 @@ public class ReceiverScript : MonoBehaviour
 
         }
 
-        if (select == 2)
+        if (select == 2) //Displays the auto receiver without an optic.
         {
 
             stalkerReceiver.SetActive(false);
