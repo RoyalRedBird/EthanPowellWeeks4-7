@@ -28,7 +28,7 @@ public class LoreBoxScript : MonoBehaviour
 
     Vector3 expandedSize = new Vector3(4.5f, 1f, 1f);
     int buttonPartialPosX = 300;
-    int buttonFullPosX = 1225;
+    int buttonFullPosX = 1250;
     int buttonCollapsedPosX = 30;
 
     Vector2 windowExpandedPos;
